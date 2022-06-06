@@ -1,45 +1,60 @@
-import { useState } from 'react'
-import logo from './logo.svg'
-import './App.css'
+import { useState } from 'react';
+import './App.css';
+import api from './services/api';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [input, setInput] = useState('');
+  const [cep, setCep] = useState({});
+
+  async function handleSearch() {
+    if (input === '') {
+      alert('Preencha algum cep!');
+      return;
+    }
+
+    try {
+      const response = await api.get(`${input}/json`);
+      setCep(response.data);
+      setInput('');
+    } catch {
+      alert('Erro ao buscar cep');
+      setInput('');
+    }
+  }
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.tsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
+    <div>
+      <h1>Buscador CEP</h1>
+
+      <section className="containerInput">
+        <input
+          type="text"
+          placeholder="Digite seu cep..."
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+        />
+        <button
+          className="buttonSearch"
+          onClick={handleSearch}
+        >
+          BUSCAR!
+        </button>
+      </section>
+
+      {Object.keys(cep).length > 0 && (
+        <main className="main">
+          <h2>CEP: {cep.cep}</h2>
+
+          <span>{cep.logradouro} </span>
+          <span>{cep.complemento}</span>
+          <span>{cep.bairro}</span>
+          <span>
+            {cep.localidade} - {cep.uf}
+          </span>
+        </main>
+      )}
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
