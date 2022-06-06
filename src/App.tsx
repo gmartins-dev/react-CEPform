@@ -23,22 +23,19 @@ function App() {
   }
 
   return (
-    <div>
-      <h1>Buscador CEP</h1>
-
-      <section className="containerInput">
-        <input
-          type="text"
-          placeholder="Digite seu cep..."
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-        />
-        <button
-          className="buttonSearch"
-          onClick={handleSearch}
-        >
-          BUSCAR!
-        </button>
+    <>
+      <section>
+        <div>
+          <label>Buscador de Cep</label>
+          <br />
+          <input
+            type="text"
+            placeholder="Digite seu cep..."
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+          />
+        </div>
+        <button onClick={handleSearch}>BUSCAR!</button>
       </section>
 
       {Object.keys(cep).length > 0 && (
@@ -53,7 +50,7 @@ function App() {
           </span>
         </main>
       )}
-    </div>
+    </>
   );
 }
 
