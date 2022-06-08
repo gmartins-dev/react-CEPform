@@ -21,7 +21,6 @@ function App() {
 
   async function getData(cep, setFieldValue) {
     const { data } = await api.get(`${cep}/json`);
-    console.log(data);
     setFieldValue('logradouro', data.logradouro);
     setFieldValue('bairro', data.bairro);
     setFieldValue('cidade', data.localidade);
