@@ -1,14 +1,13 @@
-import { Formik, Field, Form } from 'formik';
-import './App.css';
-import FormCep from './components/FormCep';
+import { Router } from './router';
 import FormCepProvider from './components/FormCepContext';
+import './App.css';
 
-function App() {
+const App = () => {
   return (
     <FormCepProvider>
-      <FormCep />
+      <Router />
     </FormCepProvider>
   );
-}
+};
 
 export default App;
