@@ -1,6 +1,15 @@
 import { Formik, Form, Field } from 'formik';
 import { Link } from 'react-router-dom';
 import api from '../services/api';
+import {
+  Box,
+  Button,
+  Flex,
+  FormControl,
+  FormLabel,
+  Input,
+  VStack,
+} from '@chakra-ui/react';
 
 export default function FormCep() {
   function onSubmit(values, actions) {
@@ -42,8 +51,11 @@ export default function FormCep() {
       render={({ isValid, setFieldValue }) => (
         <Form>
           <div className="form-control-group">
-            <label>Cep</label>
+            <FormLabel>Cep</FormLabel>
             <Field
+              as={Input}
+              colorScheme="twitter"
+              variant="filled"
               name="cep"
               type="text"
               onBlur={(event) =>
@@ -52,33 +64,73 @@ export default function FormCep() {
             />
           </div>
           <div className="form-control-group">
-            <label>Logradouro</label>
-            <Field name="logradouro" type="text" />
+            <FormLabel>Logradouro</FormLabel>
+            <Field
+              as={Input}
+              name="logradouro"
+              type="text"
+              colorScheme="twitter"
+              variant="filled"
+            />
           </div>
           <div className="form-control-group">
-            <label>Número</label>
-            <Field name="numero" type="text" />
+            <FormLabel>Número</FormLabel>
+            <Field
+              as={Input}
+              name="numero"
+              type="text"
+              colorScheme="twitter"
+              variant="filled"
+            />
           </div>
           <div className="form-control-group">
-            <label>Complemento</label>
-            <Field name="complemento" type="text" />
+            <FormLabel>Complemento</FormLabel>
+            <Field
+              as={Input}
+              name="complemento"
+              type="text"
+              colorScheme="twitter"
+              variant="filled"
+            />
           </div>
           <div className="form-control-group">
-            <label>Bairro</label>
-            <Field name="bairro" type="text" />
+            <FormLabel>Bairro</FormLabel>
+            <Field
+              as={Input}
+              name="bairro"
+              type="text"
+              colorScheme="twitter"
+              variant="filled"
+            />
           </div>
           <div className="form-control-group">
-            <label>Cidade</label>
-            <Field name="cidade" type="text" />
+            <FormLabel>Cidade</FormLabel>
+            <Field
+              as={Input}
+              name="cidade"
+              type="text"
+              colorScheme="twitter"
+              variant="filled"
+            />
           </div>
           <div className="form-control-group">
-            <label>Estado</label>
-            <Field name="uf" type="text" />
+            <FormLabel>Estado</FormLabel>
+            <Field
+              as={Input}
+              name="uf"
+              type="text"
+              colorScheme="twitter"
+              variant="filled"
+            />
           </div>
           <Link to="/form-infos">
-            <button type="submit" disabled={!isValid}>
+            <Button
+              colorScheme="twitter"
+              type="submit"
+              disabled={!isValid}
+            >
               Enviar
-            </button>
+            </Button>
           </Link>
         </Form>
       )}
