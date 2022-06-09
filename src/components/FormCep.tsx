@@ -11,6 +11,16 @@ import {
   VStack,
 } from '@chakra-ui/react';
 
+interface IFormModel {
+  cep: string;
+  logradouro: string;
+  numero: string;
+  complemento: string;
+  bairro: string;
+  cidade: string;
+  uf: string;
+}
+
 export default function FormCep() {
   function onSubmit(values, actions) {
     console.log('SUBMIT', values);
@@ -142,7 +152,7 @@ export default function FormCep() {
                     Enviar
                   </Button>
                 </Link>
-              </Form>{' '}
+              </Form>
             </VStack>
           )}
         />
