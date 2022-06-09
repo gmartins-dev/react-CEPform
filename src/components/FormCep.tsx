@@ -58,7 +58,7 @@ export default function FormCep() {
           render={({ isValid, setFieldValue }) => (
             <VStack spacing={4} align="flex-start">
               <Form>
-                <div className="form-control-group">
+                <FormControl>
                   <FormLabel>Cep</FormLabel>
                   <Field
                     as={Input}
@@ -70,8 +70,8 @@ export default function FormCep() {
                       handleOnBlur(event, setFieldValue)
                     }
                   />
-                </div>
-                <div className="form-control-group">
+                </FormControl>
+                <FormControl>
                   <FormLabel>Logradouro</FormLabel>
                   <Field
                     as={Input}
@@ -80,8 +80,8 @@ export default function FormCep() {
                     colorScheme="twitter"
                     variant="filled"
                   />
-                </div>
-                <div className="form-control-group">
+                </FormControl>
+                <FormControl>
                   <FormLabel>Número</FormLabel>
                   <Field
                     as={Input}
@@ -90,8 +90,8 @@ export default function FormCep() {
                     colorScheme="twitter"
                     variant="filled"
                   />
-                </div>
-                <div className="form-control-group">
+                </FormControl>
+                <FormControl>
                   <FormLabel>Complemento</FormLabel>
                   <Field
                     as={Input}
@@ -100,8 +100,8 @@ export default function FormCep() {
                     colorScheme="twitter"
                     variant="filled"
                   />
-                </div>
-                <div className="form-control-group">
+                </FormControl>
+                <FormControl>
                   <FormLabel>Bairro</FormLabel>
                   <Field
                     as={Input}
@@ -110,8 +110,8 @@ export default function FormCep() {
                     colorScheme="twitter"
                     variant="filled"
                   />
-                </div>
-                <div className="form-control-group">
+                </FormControl>
+                <FormControl>
                   <FormLabel>Cidade</FormLabel>
                   <Field
                     as={Input}
@@ -120,8 +120,8 @@ export default function FormCep() {
                     colorScheme="twitter"
                     variant="filled"
                   />
-                </div>
-                <div className="form-control-group">
+                </FormControl>
+                <FormControl>
                   <FormLabel>Estado</FormLabel>
                   <Field
                     as={Input}
@@ -130,13 +130,14 @@ export default function FormCep() {
                     colorScheme="twitter"
                     variant="filled"
                   />
-                </div>
+                </FormControl>
                 <Link to="/form-infos">
                   <Button
                     disabled={!isValid}
                     colorScheme="twitter"
                     type="submit"
                     width="full"
+                    marginTop="15px"
                   >
                     Enviar
                   </Button>
