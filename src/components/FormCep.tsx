@@ -1,4 +1,5 @@
 import { Formik, Form } from 'formik';
+import { Link } from 'react-router-dom';
 import api from '../services/api';
 import FormCepLabels from './FormCepLabels';
 
@@ -42,9 +43,11 @@ export default function FormCep() {
       render={({ isValid, setFieldValue }) => (
         <Form>
           <FormCepLabels />
-          <button type="submit" disabled={!isValid}>
-            Enviar
-          </button>
+          <Link to="/form-infos">
+            <button type="submit" disabled={!isValid}>
+              Enviar
+            </button>
+          </Link>
         </Form>
       )}
     />
