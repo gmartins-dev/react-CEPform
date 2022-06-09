@@ -1,7 +1,6 @@
-import { Formik, Form } from 'formik';
+import { Formik, Form, Field } from 'formik';
 import { Link } from 'react-router-dom';
 import api from '../services/api';
-import FormCepLabels from './FormCepLabels';
 
 export default function FormCep() {
   function onSubmit(values, actions) {
@@ -42,7 +41,40 @@ export default function FormCep() {
       }}
       render={({ isValid, setFieldValue }) => (
         <Form>
-          <FormCepLabels />
+          <div className="form-control-group">
+            <label>Cep</label>
+            <Field
+              name="cep"
+              type="text"
+              onBlur={(event) =>
+                handleOnBlur(event, setFieldValue)
+              }
+            />
+          </div>
+          <div className="form-control-group">
+            <label>Logradouro</label>
+            <Field name="logradouro" type="text" />
+          </div>
+          <div className="form-control-group">
+            <label>Número</label>
+            <Field name="numero" type="text" />
+          </div>
+          <div className="form-control-group">
+            <label>Complemento</label>
+            <Field name="complemento" type="text" />
+          </div>
+          <div className="form-control-group">
+            <label>Bairro</label>
+            <Field name="bairro" type="text" />
+          </div>
+          <div className="form-control-group">
+            <label>Cidade</label>
+            <Field name="cidade" type="text" />
+          </div>
+          <div className="form-control-group">
+            <label>Estado</label>
+            <Field name="uf" type="text" />
+          </div>
           <Link to="/form-infos">
             <button type="submit" disabled={!isValid}>
               Enviar
