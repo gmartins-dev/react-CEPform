@@ -1,6 +1,5 @@
-import { Formik, Form, Field, useFormik } from 'formik';
-import { Link } from 'react-router-dom';
-import api from '../services/api';
+import { useNavigate } from "react-router-dom";
+import api from "../services/api";
 import {
   Box,
   Button,
@@ -9,10 +8,11 @@ import {
   FormLabel,
   Input,
   VStack,
-} from '@chakra-ui/react';
+} from "@chakra-ui/react";
+import { SubmitHandler, useForm } from "react-hook-form";
 
-import { useContext } from 'react';
-import { FormContext } from '../context/FormContext';
+import { useContext } from "react";
+import { FormContext } from "../context/FormContext";
 
 interface IFormModel {
   cep: string;
@@ -24,168 +24,96 @@ interface IFormModel {
   uf: string;
 }
 
-export default function FormCep() {
-  const { setUseForm, useForm } = useContext(FormContext);
-  const formik = useFormik({
-    initialValues: {
-      cep: '',
-      logradouro: '',
-      numero: '',
-      complemento: '',
-      bairro: '',
-      cidade: '',
-      uf: '',
-    },
-    onSubmit: (values) => {},
-  });
+interface IRecivedProps {
+  bairro: string;
+  cep: string;
+  complemento: string;
+  ddd: string;
+  gia: string;
+  ibge: string;
+  localidade: string;
+  logradouro: string;
+  siafi: string;
+  uf: string;
+}
 
-  function onSubmit({
-    logradouro,
-    bairro,
-    cep,
-    cidade,
-    complemento,
-    numero,
-    uf,
-  }: IFormModel) {
-    setUseForm({
-      logradouro: 'asssd',
-      bairro: 'asssd',
-      cep: 'asssd',
-      cidade: 'asssd',
-      complemento: 'asssd',
-      numero: 'asssd',
-      uf: 'asssd',
-    });
-    console.log('SUBMIT', useForm);
+export default function FormCep() {
+  const { setUseForm } = useContext(FormContext);
+  const { register, handleSubmit, watch, reset } = useForm<IFormModel>();
+  const navigate = useNavigate();
+
+  const onSubmit: SubmitHandler<IFormModel> = (data) => {
+    setUseForm(data);
+    navigate("/form-infos");
+  };
+
+  function handleOnBlur(handleUserCep: string) {
+    const cep = handleUserCep?.replace(/[^0-9]/g, "");
+
+    if (cep?.length !== 8) {
+      return;
+    }
+    getData(cep);
   }
 
-  // function handleOnBlur(event, setFieldValue) {
-  //   const { value } = event.target;
+  async function getData(cep: string) {
+    const { data } = await api.get(`${cep}/json`);
+    console.log(data);
+    const { bairro, logradouro, uf, localidade }: IRecivedProps = data;
 
-  //   const cep = value?.replace(/[^0-9]/g, '');
-
-  //   if (cep?.length !== 8) {
-  //     return;
-  //   }
-  //   getData(cep, setFieldValue);
-  // }
-
-  // async function getData(cep, setFieldValue) {
-  //   const { data } = await api.get(`${cep}/json`);
-  //   setFieldValue('logradouro', data.logradouro);
-  //   setFieldValue('bairro', data.bairro);
-  //   setFieldValue('cidade', data.localidade);
-  //   setFieldValue('uf', data.uf);
-  // }
+    reset({ uf, bairro, logradouro, cidade: localidade });
+  }
 
   return (
     <>
-      <Flex
-        bg="gray.100"
-        align="center"
-        justify="center"
-        h="100vh"
-      >
-        <Box bg="white" p={6} rounded="md" w={64}>
-          <VStack spacing={4} align="flex-start">
-            <Form onSubmit={formik.handleSubmit}>
+      <Flex bg='gray.100' align='center' justify='center' h='100vh'>
+        <Box bg='white' p={6} rounded='md' w={64}>
+          <VStack spacing={4} align='flex-start'>
+            <form onSubmit={handleSubmit(onSubmit)}>
               <FormControl>
                 <FormLabel>Cep</FormLabel>
-                <Field
-                  as={Input}
-                  colorScheme="twitter"
-                  variant="filled"
-                  name="cep"
-                  type="text"
-                  onBlur={(event) =>
-                    handleOnBlur(event, setFieldValue)
-                  }
-                  onChange={formik.handleChange}
-                  value={formik.values.cep}
+                <Input
+                  {...register("cep")}
+                  onBlur={() => {
+                    handleOnBlur(watch("cep"));
+                    console.log(watch("cep"));
+                  }}
                 />
               </FormControl>
               <FormControl>
                 <FormLabel>Logradouro</FormLabel>
-                <Field
-                  as={Input}
-                  name="logradouro"
-                  type="text"
-                  colorScheme="twitter"
-                  variant="filled"
-                />
+                <Input {...register("logradouro")} />
               </FormControl>
               <FormControl>
                 <FormLabel>Número</FormLabel>
-                <Field
-                  as={Input}
-                  name="numero"
-                  type="text"
-                  colorScheme="twitter"
-                  variant="filled"
-                  onChange={formik.handleChange}
-                  value={formik.values.numero}
-                />
+                <Input {...register("numero")} />
               </FormControl>
               <FormControl>
                 <FormLabel>Complemento</FormLabel>
-                <Field
-                  as={Input}
-                  name="complemento"
-                  type="text"
-                  colorScheme="twitter"
-                  variant="filled"
-                  onChange={formik.handleChange}
-                  value={formik.values.complemento}
-                />
+                <Input {...register("complemento")} />
               </FormControl>
               <FormControl>
                 <FormLabel>Bairro</FormLabel>
-                <Field
-                  as={Input}
-                  name="bairro"
-                  type="text"
-                  colorScheme="twitter"
-                  variant="filled"
-                  onChange={formik.handleChange}
-                  value={formik.values.bairro}
-                />
+                <Input {...register("bairro")} />
               </FormControl>
               <FormControl>
                 <FormLabel>Cidade</FormLabel>
-                <Field
-                  as={Input}
-                  name="cidade"
-                  type="text"
-                  colorScheme="twitter"
-                  variant="filled"
-                  onChange={formik.handleChange}
-                  value={formik.values.cidade}
-                />
+                <Input {...register("cidade")} />
               </FormControl>
               <FormControl>
                 <FormLabel>Estado</FormLabel>
-                <Field
-                  as={Input}
-                  name="uf"
-                  type="text"
-                  colorScheme="twitter"
-                  variant="filled"
-                  onChange={formik.handleChange}
-                  value={formik.values.uf}
-                />
+                <Input {...register("uf")} />
               </FormControl>
 
               <Button
-                disabled={!formik.isValid}
-                colorScheme="twitter"
-                type="submit"
-                width="full"
-                marginTop="15px"
+                colorScheme='twitter'
+                type='submit'
+                width='full'
+                marginTop='15px'
               >
                 Enviar
               </Button>
-            </Form>
+            </form>
           </VStack>
         </Box>
       </Flex>
