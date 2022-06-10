@@ -1,29 +1,27 @@
 import { Link } from 'react-router-dom';
-import { Button, Flex, VStack } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  Flex,
+  VStack,
+} from '@chakra-ui/react';
 
 export const FormInfos = () => {
   return (
-    <VStack bgColor="gray.100" height="100vh">
-      <Flex
-        direction="column"
-        maxW="450px"
-        maxH="500px"
-        borderRadius="8px"
-        bgColor="white"
-        margin="auto"
-        marginTop="30px"
+    <Flex
+      bg="gray.100"
+      align="center"
+      justify="center"
+      h="100vh"
+    >
+      <Box
+        bg="white"
+        p={6}
+        rounded="md"
+        w={64}
+        overflow="auto"
       >
-        <VStack
-          p="16px"
-          gap="16px"
-          marginY="64px"
-          align="flex-start"
-          maxW="450px"
-          minW="200px"
-          h="100%"
-          w="100%"
-          overflow="auto"
-        >
+        <VStack spacing={4} align="flex-start">
           <main>testeeeeeeeeeeboxxxxxxxxxx</main>
         </VStack>
         <Link to="/">
@@ -36,7 +34,7 @@ export const FormInfos = () => {
             Voltar
           </Button>
         </Link>
-      </Flex>
-    </VStack>
+      </Box>
+    </Flex>
   );
 };
