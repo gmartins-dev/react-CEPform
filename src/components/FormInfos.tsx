@@ -5,8 +5,12 @@ import {
   Flex,
   VStack,
 } from '@chakra-ui/react';
+import { useContext } from 'react';
+import { FormContext } from '../context/FormContext';
 
 export const FormInfos = () => {
+  const { useForm } = useContext(FormContext);
+
   return (
     <Flex
       bg="gray.100"
@@ -23,6 +27,7 @@ export const FormInfos = () => {
       >
         <VStack spacing={4} align="flex-start">
           <main>testeeeeeeeeeeboxxxxxxxxxx</main>
+          <div>{useForm?.logradouro}</div>
         </VStack>
         <Link to="/">
           <Button
