@@ -10,9 +10,9 @@ export default function InputError({
   type,
   field,
 }: IInputErrorProps) {
+  // @ts-expect-error
   return (
     <Text as="mark" color="tomato" fontWeight="bold">
-      // @ts-expect-error
       {errors[field][type]}
     </Text>
   );
