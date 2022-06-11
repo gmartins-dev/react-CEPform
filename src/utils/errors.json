@@ -1,0 +1,8 @@
+{
+  "cep": {"required": "Informe o seu CEP, campo obrigatório."},
+  "logradouro": {"required": "Informe o logradouro, campo obrigatório."},
+  "numero": {"required": "Informe o seu número, campo obrigatório."},
+  "bairro": {"required": "Informe o seu bairro, campo obrigatório."},
+  "cidade": {"required": "Informe a sua cidade, campo obrigatório."},
+  "uf": {"required": "Informe o seu estado, campo obrigatório."}
+}
