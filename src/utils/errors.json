@@ -1,8 +1,0 @@
-{
-  "cep": {"required": "Informe o seu CEP."},
-  "logradouro": {"required": "Informe o logradouro."},
-  "numero": {"required": "Informe o número."},
-  "bairro": {"required": "Informe o bairro."},
-  "cidade": {"required": "Informe a cidade."},
-  "uf": {"required": "Informe o estado."}
-}

@@ -61,8 +61,6 @@ export default function FormCep() {
     resolver: yupResolver(validationSchema),
   });
 
-  //TENTAR FAZER USANDO O SCHEMA AQUI DENTRO SEM IMPORT!
-
   const navigate = useNavigate();
 
   const onSubmit: SubmitHandler<IFormModel> = (data) => {
@@ -115,70 +113,49 @@ export default function FormCep() {
                   }}
                 />
                 {errors?.cep?.type && (
-                  <InputError
-                    type={errors.cep.type}
-                    field="cep"
-                  />
+                  <InputError field="cep" />
                 )}
               </FormControl>
               <FormControl>
                 <FormLabel>Logradouro</FormLabel>
                 <Input {...register('logradouro')} />
                 {errors?.logradouro?.type && (
-                  <InputError
-                    type={errors.logradouro.type}
-                    field="logradouro"
-                  />
+                  <InputError field="logradouro" />
                 )}
               </FormControl>
               <FormControl>
                 <FormLabel>Número</FormLabel>
                 <Input {...register('numero')} />
                 {errors?.numero?.type && (
-                  <InputError
-                    type={errors.numero.type}
-                    field="numero"
-                  />
+                  <InputError field="numero" />
                 )}
               </FormControl>
               <FormControl>
                 <FormLabel>Complemento</FormLabel>
                 <Input {...register('complemento')} />
                 {errors?.complemento?.type && (
-                  <InputError
-                    type={errors.complemento.type}
-                    field="complemento"
-                  />
+                  <InputError field="complemento" />
                 )}
               </FormControl>
               <FormControl>
                 <FormLabel>Bairro</FormLabel>
                 <Input {...register('bairro')} />
                 {errors?.bairro?.type && (
-                  <InputError
-                    type={errors.bairro.type}
-                    field="bairro"
-                  />
+                  <InputError field="bairro" />
                 )}
               </FormControl>
               <FormControl>
                 <FormLabel>Cidade</FormLabel>
                 <Input {...register('cidade')} />
                 {errors?.cidade?.type && (
-                  <InputError
-                    type={errors.cidade.type}
-                    field="cidade"
-                  />
+                  <InputError field="cidade" />
                 )}
               </FormControl>
               <FormControl>
                 <FormLabel>Estado</FormLabel>
                 <Input {...register('uf')} />
                 {errors?.uf?.type && (
-                  <InputError
-                    type={errors.uf.type}
-                    field="uf"
-                  />
+                  <InputError field="uf" />
                 )}
               </FormControl>
 
