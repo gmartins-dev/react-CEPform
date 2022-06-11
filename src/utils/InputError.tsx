@@ -1,4 +1,5 @@
 import errors from '../utils/errors.json';
+import { Text } from '@chakra-ui/react';
 
 interface IInputErrorProps {
   type: string;
@@ -9,6 +10,10 @@ export default function InputError({
   type,
   field,
 }: IInputErrorProps) {
-  // @ts-expect-error
-  return <span>{errors[field][type]}</span>;
+  return (
+    <Text as="mark" color="tomato" fontWeight="bold">
+      // @ts-expect-error
+      {errors[field][type]}
+    </Text>
+  );
 }

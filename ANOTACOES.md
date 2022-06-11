@@ -4,13 +4,13 @@
 [X]Instalar depencias iniciais
 [X]Consumir API
 [X]Criar formulário
-[]Fazer validações/verificações no form
-[]Criar Tela/Pagina 2
-[]Organizar Pastas
-[]Separar Responsabilidades
-[]Componetizar
-[]Typeficar
-[]Criar .env
+[x]Fazer validações/verificações no form
+[x]Criar Tela/Pagina 2
+[x]Organizar Pastas
+[x]Separar Responsabilidades
+[x]Componetizar
+[x]Typeficar
+[x]Criar .env
 
 
 O que é importante de se utilizar?
@@ -19,9 +19,11 @@ O que é importante de se utilizar?
 [x] TypeScript – 3 pontos
 [x] Axios – 1 pontos
 [x] React Router Dom – 1,5 ponto
-[] React Query – 2 pontos
-[] Chakra UI – 1,5 ponto
-[] Responsividade – 2 pontos
+[-] React Query – 2 pontos
+[x] Chakra UI – 1,5 ponto
+[x] Responsividade – 2 pontos
 [x] React Router Dom - 1 pontos ??
-[] Context API - 3 pontos
+[x] Context API - 3 pontos
+
+Resultado:
 Total: 15 pontos

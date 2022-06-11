@@ -26,13 +26,34 @@ export const FormInfos = () => {
         overflow="auto"
       >
         <VStack spacing={4} align="flex-start">
-          <p>{useForm?.cep}</p>
-          <p>{useForm?.logradouro}</p>
-          <p>{useForm?.numero}</p>
-          <p>{useForm?.complemento}</p>
-          <p>{useForm?.bairro}</p>
-          <p>{useForm?.cidade}</p>
-          <p>{useForm?.uf}</p>
+          <p>
+            <b>CEP: </b>
+            {useForm?.cep}
+          </p>
+          <p>
+            <b>Logradouro: </b>
+            {useForm?.logradouro}
+          </p>
+          <p>
+            <b>Número: </b>
+            {useForm?.numero}
+          </p>
+          <p>
+            <b>Complemento: </b>
+            {useForm?.complemento}
+          </p>
+          <p>
+            <b>Bairro: </b>
+            {useForm?.bairro}
+          </p>
+          <p>
+            <b>Cidade: </b>
+            {useForm?.cidade}
+          </p>
+          <p>
+            <b>Estado: </b>
+            {useForm?.uf}
+          </p>
         </VStack>
 
         <Link to="/">

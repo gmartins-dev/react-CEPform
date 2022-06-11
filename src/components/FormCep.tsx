@@ -11,10 +11,10 @@ import {
 } from '@chakra-ui/react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import schema from '../utils/schema';
 import { useContext } from 'react';
 import { FormContext } from '../context/FormContext';
 import InputError from '../utils/InputError';
+import * as yup from 'yup';
 
 interface IFormModel {
   cep: string;
@@ -39,6 +39,16 @@ interface IRecivedProps {
   uf: string;
 }
 
+const validationSchema = yup.object({
+  cep: yup.string().required(),
+  logradouro: yup.string().required(),
+  numero: yup.string().required(),
+  complemento: yup.string(),
+  bairro: yup.string().required(),
+  cidade: yup.string().required(),
+  uf: yup.string().required(),
+});
+
 export default function FormCep() {
   const { setUseForm } = useContext(FormContext);
   const {
@@ -48,8 +58,11 @@ export default function FormCep() {
     reset,
     formState: { errors },
   } = useForm<IFormModel>({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(validationSchema),
   });
+
+  //TENTAR FAZER USANDO O SCHEMA AQUI DENTRO SEM IMPORT!
+
   const navigate = useNavigate();
 
   const onSubmit: SubmitHandler<IFormModel> = (data) => {
@@ -78,9 +91,7 @@ export default function FormCep() {
     reset({ uf, bairro, logradouro, cidade: localidade });
   }
 
-  function onError(error: any) {
-    console.log('erro: ', error);
-  }
+  function onError(error: any) {}
 
   return (
     <>
