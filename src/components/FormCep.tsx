@@ -1,5 +1,5 @@
-import { useNavigate } from "react-router-dom";
-import api from "../services/api";
+import { useNavigate } from 'react-router-dom';
+import api from '../services/api';
 import {
   Box,
   Button,
@@ -8,11 +8,13 @@ import {
   FormLabel,
   Input,
   VStack,
-} from "@chakra-ui/react";
-import { SubmitHandler, useForm } from "react-hook-form";
-
-import { useContext } from "react";
-import { FormContext } from "../context/FormContext";
+} from '@chakra-ui/react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import schema from '../services/schema';
+import { useContext } from 'react';
+import { FormContext } from '../context/FormContext';
 
 interface IFormModel {
   cep: string;
@@ -25,8 +27,8 @@ interface IFormModel {
 }
 
 interface IRecivedProps {
-  bairro: string;
   cep: string;
+  bairro: string;
   complemento: string;
   ddd: string;
   gia: string;
@@ -39,16 +41,17 @@ interface IRecivedProps {
 
 export default function FormCep() {
   const { setUseForm } = useContext(FormContext);
-  const { register, handleSubmit, watch, reset } = useForm<IFormModel>();
+  const { register, handleSubmit, watch, reset } =
+    useForm<IFormModel>({ resolver: yupResolver(schema) });
   const navigate = useNavigate();
 
   const onSubmit: SubmitHandler<IFormModel> = (data) => {
     setUseForm(data);
-    navigate("/form-infos");
+    navigate('/form-infos');
   };
 
   function handleOnBlur(handleUserCep: string) {
-    const cep = handleUserCep?.replace(/[^0-9]/g, "");
+    const cep = handleUserCep?.replace(/[^0-9]/g, '');
 
     if (cep?.length !== 8) {
       return;
@@ -59,57 +62,67 @@ export default function FormCep() {
   async function getData(cep: string) {
     const { data } = await api.get(`${cep}/json`);
     console.log(data);
-    const { bairro, logradouro, uf, localidade }: IRecivedProps = data;
+    const {
+      bairro,
+      logradouro,
+      uf,
+      localidade,
+    }: IRecivedProps = data;
 
     reset({ uf, bairro, logradouro, cidade: localidade });
   }
 
   return (
     <>
-      <Flex bg='gray.100' align='center' justify='center' h='100vh'>
-        <Box bg='white' p={6} rounded='md' w={64}>
-          <VStack spacing={4} align='flex-start'>
+      <Flex
+        bg="gray.100"
+        align="center"
+        justify="center"
+        h="100vh"
+      >
+        <Box bg="white" p={6} rounded="md" w={64}>
+          <VStack spacing={4} align="flex-start">
             <form onSubmit={handleSubmit(onSubmit)}>
               <FormControl>
                 <FormLabel>Cep</FormLabel>
                 <Input
-                  {...register("cep")}
+                  {...register('cep')}
                   onBlur={() => {
-                    handleOnBlur(watch("cep"));
-                    console.log(watch("cep"));
+                    handleOnBlur(watch('cep'));
+                    console.log(watch('cep'));
                   }}
                 />
               </FormControl>
               <FormControl>
                 <FormLabel>Logradouro</FormLabel>
-                <Input {...register("logradouro")} />
+                <Input {...register('logradouro')} />
               </FormControl>
               <FormControl>
                 <FormLabel>Número</FormLabel>
-                <Input {...register("numero")} />
+                <Input {...register('numero')} />
               </FormControl>
               <FormControl>
                 <FormLabel>Complemento</FormLabel>
-                <Input {...register("complemento")} />
+                <Input {...register('complemento')} />
               </FormControl>
               <FormControl>
                 <FormLabel>Bairro</FormLabel>
-                <Input {...register("bairro")} />
+                <Input {...register('bairro')} />
               </FormControl>
               <FormControl>
                 <FormLabel>Cidade</FormLabel>
-                <Input {...register("cidade")} />
+                <Input {...register('cidade')} />
               </FormControl>
               <FormControl>
                 <FormLabel>Estado</FormLabel>
-                <Input {...register("uf")} />
+                <Input {...register('uf')} />
               </FormControl>
 
               <Button
-                colorScheme='twitter'
-                type='submit'
-                width='full'
-                marginTop='15px'
+                colorScheme="twitter"
+                type="submit"
+                width="full"
+                marginTop="15px"
               >
                 Enviar
               </Button>
